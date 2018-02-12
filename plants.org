@@ -1,0 +1,27 @@
+* Plants
+** Matarratón
+  :PROPERTIES:
+  :NAME: NOTES
+  :END:
+* DB
+ejecute codigo con c-c c-c
+#+BEGIN_SRC emacs-lisp
+(require 'emacsql)
+;; Connect to the database, SQLite in this case:
+(defvar db (emacsql-sqlite "~/office.db"))
+
+;; Create a table with 3 columns:
+(emacsql db [:create-table patients
+             ([name (id integer :primary-key) (weight float)])])
+
+;; Insert a few rows:
+(emacsql db [:insert :into patients
+             :values (["Jeff" 1000 184.2] ["Susan" 1001 118.9])])
+
+;; Query the database:
+(emacsql db [:select [name id]
+             :from patients
+             :where (< weight 150.0)])
+;; => (("Susan" 1001))
+
+#+END_SRC

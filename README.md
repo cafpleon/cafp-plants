@@ -1,2 +1,2 @@
 # cafp-plants
-plant cientifics names
+plant cientific names
